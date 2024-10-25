@@ -26,17 +26,21 @@ const Blog = () => {
     keyword: "",
     meta_description: "",
     title: "",
-    slug: "",
   });
+  const convertToLSlug = (title) => {
+    const lslug = title
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, "")
+      .replace(/-+/g, "-")
+      .replace(/^-|-$/g, "");
+    return lslug;
+  };
   const btnHandler = async (e) => {
     e.preventDefault();
-    const { keyword, meta_description, title, slug } = data;
-    if (
-      keyword !== "" &&
-      meta_description !== "" &&
-      slug !== "" &&
-      title !== ""
-    ) {
+    const { keyword, meta_description, title } = data;
+    const slug = convertToLSlug(title);
+    if (keyword !== "" && meta_description !== "" && title !== "") {
       try {
         await setDoc(doc(init.db, "blog", uuidv4()), {
           keyword,
@@ -51,7 +55,6 @@ const Blog = () => {
           keyword: "",
           meta_description: "",
           title: "",
-          slug: "",
         });
         setImgUrl(null);
         setProgresspercent(0);
@@ -152,7 +155,7 @@ const Blog = () => {
                       onChange={formHandler}
                     />
                   </div>
-                  <div className="form-group">
+                  {/* <div className="form-group">
                     <label>Slug</label>
                     <input
                       type="text"
@@ -162,7 +165,7 @@ const Blog = () => {
                       value={data.slug}
                       onChange={formHandler}
                     />
-                  </div>
+                  </div> */}
                   <JoditEditor
                     ref={editor}
                     value={content}

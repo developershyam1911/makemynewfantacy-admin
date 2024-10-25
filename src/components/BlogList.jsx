@@ -85,7 +85,6 @@ const BlogList = () => {
                           <th>Keyword</th>
                           <th>Meta Desc.</th>
                           <th>Title</th>
-                          <th>Slug</th>
                           <th>Description</th>
                           <th>Date</th>
                           <th>Action</th>
@@ -147,7 +146,7 @@ const BlogList = () => {
                                 <td>{item.keyword}</td>
                                 <td>{item.meta_description}</td>
                                 <td>{item.title}</td>
-                                <td>{item.slug}</td>
+
                                 <td>
                                   <div
                                     dangerouslySetInnerHTML={{
